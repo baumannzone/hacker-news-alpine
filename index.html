@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hacker News Alpine - Baumannzone</title>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="main.js"></script>
 </head>
 
@@ -30,48 +30,59 @@
     <section x-data="{ items: [], currentPage: 1 }" x-init="items = await getItems('top', currentPage)">
       <ul role="list" class="space-y-3">
         <template x-for="item, index in items" :key="item.id">
-          <li class="bg-white px-4 py-4 shadow sm:rounded-md sm:px-6">
-            <!-- Check if item has domain -->
-            <template x-if="item.hasOwnProperty('domain')">
-              <a :href="item.url" target="_blank" rel="noopener noreferrer">
-                <p>
-                  <span x-text="item.title" class="text-bold text-slate-700"></span>
-                  <span x-text="`(${item.domain})`"></span>
-                </p>
-              </a>
-            </template>
-
-            <!-- Check if item has no domain -->
-            <template x-if="!item.hasOwnProperty('domain')">
-              <a :href="buildItemLink(item.id)">
-                <p>
-                  <span x-text="item.title" class="text-bold text-slate-700"></span>
-                </p>
-              </a>
-            </template>
-
-            <p>
-              <!-- <span x-text="item.points"></span> -->
-              <template x-if="item.hasOwnProperty('user')">
-                <span class="text-xs mr-4 text-gray-600"> by </span>
-                <span x-text="item.user" class="text-underline"></span>
-                <!-- <a :href="buildUserLink(item.user)">
-                </a> -->
+          <li class="flex bg-white px-4 sm:px-6 py-4 shadow rounded-md divide-x">
+            <div class="flex flex-col items-center pr-4">
+              <span>▲</span>
+              <span x-text="item.points" class="text-gray-400 text-sm font-medium w-10 text-center tabular-nums"></span>
+            </div>
+            <div class="pl-4">
+              <!-- Check if item has domain -->
+              <template x-if="item.hasOwnProperty('domain')">
+                <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block">
+                  <span x-text="item.title" class="text-bold text-gray-900"></span>
+                </a>
               </template>
-              <span> | </span>
-              <span x-text="item.time_ago"></span>
-              <span> | </span>
-              <a :href="buildItemLink(item.id)" class="text-underline">
-                <span x-text="item.comments_count"></span>
-                <span> comments</span>
-              </a>
-            </p>
+
+              <!-- Check if item has no domain -->
+              <template x-if="!item.hasOwnProperty('domain')">
+                <a :href="buildItemLink(item.id)">
+                  <p>
+                    <span x-text="item.title" class="text-bold text-gray-900"></span>
+                  </p>
+                </a>
+              </template>
+
+              <div class="flex space-x-4 text-xs text-gray-600">
+                <!-- Check if item has user -->
+                <div>
+                  <template x-if="item.hasOwnProperty('user') && item.user !== null">
+                    <div>
+                      <span>by</span>
+                      <a :href="buildUserLink(item.user)"
+                        class="font-medium underline decoration-cyan-500/40 decoration-2" x-text="item.user"></a>
+                      </a>
+                    </div>
+                  </template>
+                </div>
+                <span x-text="item.time_ago"></span>
+                <a :href="buildItemLink(item.id)" class="font-medium underline decoration-cyan-500/40 decoration-2">
+                  <span x-text="item.comments_count"></span>
+                  comments
+                </a>
+                <!-- Check if item has domain -->
+                <template x-if="item.hasOwnProperty('domain')">
+                  <span x-text="item.domain"></span>
+                </template>
+              </div>
+            </div>
 
           </li>
         </template>
       </ul>
     </section>
   </div>
+
+
 
 </body>
 
