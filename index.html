@@ -13,19 +13,18 @@
 
 <body class="bg-gray-100">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-    <div>
+    <header>
       <div class="hidden sm:block">
         <div class="border-b border-gray-200">
-          <nav class="-mb-px flex justify-center space-x-8" aria-label="Tabs">
-            <a href="/"
-              class="border-indigo-500 text-indigo-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"
+          <nav class="-mb-px flex justify-center space-x-4" aria-label="Tabs">
+            <a href="/" class="border-cyan-500 text-cyan-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm"
               aria-current="page">Top</a>
             <a href="/new.html"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">New</a>
+              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">New</a>
           </nav>
         </div>
       </div>
-    </div>
+    </header>
 
     <section x-data="{ items: [], currentPage: 1 }" x-init="items = await getItems('top', currentPage)">
       <ul role="list" class="space-y-3">
