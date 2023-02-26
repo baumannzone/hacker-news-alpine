@@ -32,24 +32,24 @@
       <ul role="list" class="space-y-3">
         <template x-for="item, index in items" :key="item.id">
           <li class="flex bg-white px-4 sm:px-6 py-4 shadow rounded-md divide-x">
+            <!-- Left Col -->
             <div class="flex flex-col items-center pr-4">
               <span>▲</span>
               <span x-text="item.points" class="text-gray-400 text-sm font-medium w-10 text-center tabular-nums"></span>
             </div>
+            <!-- Right Col -->
             <div class="pl-4">
-              <!-- Check if item has domain -->
+
+              <!-- Item has domain -->
               <template x-if="item.hasOwnProperty('domain')">
                 <a :href="item.url" target="_blank" rel="noopener noreferrer" class="block">
                   <span x-text="item.title" class="text-bold text-gray-900"></span>
                 </a>
               </template>
 
-              <!-- Check if item has no domain -->
+              <!-- Item has no domain -->
               <template x-if="!item.hasOwnProperty('domain')">
-                <a :href="buildItemLink(item.id)">
-                  <p>
-                    <span x-text="item.title" class="text-bold text-gray-900"></span>
-                  </p>
+                <a :href="buildItemLink(item.id)" x-text="item.title" class="text-bold text-gray-900">
                 </a>
               </template>
 
@@ -57,23 +57,25 @@
                 <!-- Check if item has user -->
                 <template x-if="item.hasOwnProperty('user') && item.user !== null">
                   <span>
-                    <span>by</span>
+                    by
                     <a :href="buildUserLink(item.user)"
-                      class="font-medium underline decoration-cyan-500/40 decoration-2" x-text="item.user"></a>
+                      class="font-medium underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
+                      x-text="item.user"></a>
                     </a>
                     <span class="p-2 text-gray-300 select-none">|</span>
                   </span>
                 </template>
                 <span x-text="item.time_ago"></span>
                 <span class="p-2 text-gray-300 select-none">|</span>
-                <a :href="buildItemLink(item.id)" class="font-medium underline decoration-cyan-500/40 decoration-2">
+                <a :href="buildItemLink(item.id)"
+                  class="font-medium underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150">
                   <span x-text="item.comments_count"></span>
                   comments
                 </a>
                 <span class="p-2 text-gray-300 select-none">|</span>
                 <!-- Check if item has domain -->
                 <template x-if="item.hasOwnProperty('domain')">
-                  <span x-text="item.domain"></span>
+                  <span x-text="item.domain" class="font-mono"></span>
                 </template>
               </div>
             </div>
