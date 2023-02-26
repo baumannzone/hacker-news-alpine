@@ -12,20 +12,22 @@
 </head>
 
 <body class="bg-gray-100">
-  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+  <!-- Container -->
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+
+    <!-- Navigation -->
     <header>
-      <div class="hidden sm:block">
-        <div class="border-b border-gray-200">
-          <nav class="-mb-px flex justify-center space-x-4" aria-label="Tabs">
-            <a href="/" class="border-cyan-500 text-cyan-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm"
-              aria-current="page">Top</a>
-            <a href="/new.html"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">New</a>
-          </nav>
-        </div>
+      <div class="border-b border-gray-200">
+        <nav class="-mb-px flex justify-center space-x-4" aria-label="Tabs">
+          <a href="/" class="border-cyan-500 text-cyan-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm"
+            aria-current="page">Top</a>
+          <a href="/new.html"
+            class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">New</a>
+        </nav>
       </div>
     </header>
 
+    <!-- Content -->
     <section x-data="{ items: [], currentPage: 1 }" x-init="items = await getItems('top', currentPage)">
       <ul role="list" class="space-y-3">
         <template x-for="item, index in items" :key="item.id">
@@ -51,30 +53,30 @@
                 </a>
               </template>
 
-              <div class="flex space-x-4 text-xs text-gray-600">
+              <div class="text-xs text-gray-600">
                 <!-- Check if item has user -->
-                <div>
-                  <template x-if="item.hasOwnProperty('user') && item.user !== null">
-                    <div>
-                      <span>by</span>
-                      <a :href="buildUserLink(item.user)"
-                        class="font-medium underline decoration-cyan-500/40 decoration-2" x-text="item.user"></a>
-                      </a>
-                    </div>
-                  </template>
-                </div>
+                <template x-if="item.hasOwnProperty('user') && item.user !== null">
+                  <span>
+                    <span>by</span>
+                    <a :href="buildUserLink(item.user)"
+                      class="font-medium underline decoration-cyan-500/40 decoration-2" x-text="item.user"></a>
+                    </a>
+                    <span class="p-2 text-gray-300 select-none">|</span>
+                  </span>
+                </template>
                 <span x-text="item.time_ago"></span>
+                <span class="p-2 text-gray-300 select-none">|</span>
                 <a :href="buildItemLink(item.id)" class="font-medium underline decoration-cyan-500/40 decoration-2">
                   <span x-text="item.comments_count"></span>
                   comments
                 </a>
+                <span class="p-2 text-gray-300 select-none">|</span>
                 <!-- Check if item has domain -->
                 <template x-if="item.hasOwnProperty('domain')">
                   <span x-text="item.domain"></span>
                 </template>
               </div>
             </div>
-
           </li>
         </template>
       </ul>
