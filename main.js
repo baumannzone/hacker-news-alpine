@@ -22,9 +22,9 @@ const SECTIONS = {
  * const stories = await getItems('top', 1)
  * console.log(stories) // [{...}, {...}, ...]
  */
-const getItems = async (section, page) => {
+const getItems = async (section) => {
   try {
-    const res = await fetch(`${BASE_URL}${SECTIONS[section]}/${page}.json`);
+    const res = await fetch(`${BASE_URL}${SECTIONS[section]}/1.json`);
     const stories = await res.json();
 
     // Return the stories.
@@ -47,6 +47,7 @@ const getItem = async (id) => {
   try {
     const res = await fetch(`${BASE_URL}/item/${id}.json`);
     const item = await res.json();
+    console.log('🚀 ~ file: main.js:50 ~ getItem ~ item:', item);
     return item;
   } catch (err) {
     console.log(err);
@@ -98,7 +99,7 @@ const buildUserLink = (user) => {
  * console.log(link) // https://news.ycombinator.com/item?id=123
  */
 const buildItemLink = (id) => {
-  return `/item?id=${id}.json`;
+  return `/item.html?id=${id}`;
 };
 
 /**

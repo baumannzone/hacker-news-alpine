@@ -28,7 +28,7 @@
     </header>
 
     <!-- Content -->
-    <section x-data="{ items: [], currentPage: 1 }" x-init="items = await getItems('top', currentPage)">
+    <section x-data="{ items: [] }" x-init=" items = await getItems('top') ">
       <ul role="list" class="space-y-3">
         <template x-for="item, index in items" :key="item.id">
           <li class="flex bg-white px-4 sm:px-6 py-4 shadow rounded-md divide-x">
