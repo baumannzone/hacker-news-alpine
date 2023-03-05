@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hacker News Alpine - Baumannzone</title>
+  <title>HN Alpine.js - Baumannzone</title>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="main.js"></script>
@@ -70,23 +70,20 @@
       </div>
 
       <template x-for="comment in getComments(item)">
-        <section class="my-1" x-init="style = { marginLeft: `${comment.level * 1.5}rem`}">
+        <div class="my-1" x-init="style = { marginLeft: `${comment.level * 1.5}rem`}">
           <div class="comment" :style="style">
-            <p class="text-bold comment-head">
-              <a :href="getUserLink(comment.user)"><span x-text="comment.user" class="text-underline"></span></a>
-              <span x-text="comment.time_ago"></span>
-            </p>
-            <div x-html="comment.content"></div>
+            <header>
+              <span>‣</span>
+              <a :href="buildUserLink(comment.user)"
+                class="font-medium text-gray-700 underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
+                x-text="comment.user"></a>
+              </a>
+              <span x-text="comment.time_ago" class="text-gray-500 text-xs"></span>
+            </header>
+            <div x-html="comment.content" class="text-gray-600 text-sm"></div>
           </div>
-        </section>
+        </div>
       </template>
-
-      <div class="text-center" x-cloak>
-        <!-- <span>AJHN | </span>
-        <span> -->
-        <a href="/about" class="text-underline">About</a>
-        <!-- </span> -->
-      </div>
     </main>
   </div>
 
