@@ -34,9 +34,14 @@
       <div>
         <header>
           <template x-if="item.hasOwnProperty('domain')">
-            <a :href="item.url" target="_blank" rel="noopener noreferrer">
-              <h1 x-text="item.title" class="text-4xl"></h1>
-              <span x-text="item.domain" class=""></span>
+            <a :href="item.url" target="_blank" rel="noopener noreferrer" class="group">
+              <h1 x-text="item.title"
+                class="text-3xl font-medium underline decoration-cyan-500/40 decoration-4 group-hover:decoration-cyan-500/80 ease-in duration-150">
+              </h1>
+              <template x-if="item.hasOwnProperty('domain')">
+                <span x-text="`(${item.domain})`"
+                  class="block font-mono text-gray-400 mt-2 group-hover:text-gray-600 ease-in duration-150"></span>
+              </template>
             </a>
           </template>
 
@@ -45,11 +50,7 @@
           </template>
         </header>
 
-
-
-
-        <div class="text-xs text-gray-600">
-          <!-- Check if item has user -->
+        <div class="text-sm text-gray-600 mt-2 mb-6">
           <template x-if="item.hasOwnProperty('user') && item.user !== null">
             <span>
               by
@@ -60,38 +61,16 @@
               <span class="p-2 text-gray-300 select-none">|</span>
             </span>
           </template>
+          <span x-text="`${item.points} points`"></span>
+          <span class="p-2 text-gray-300 select-none">|</span>
           <span x-text="item.time_ago"></span>
           <span class="p-2 text-gray-300 select-none">|</span>
-          <a :href="buildItemLink(item.id)"
-            class="font-medium underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150">
-            <span x-text="item.comments_count"></span>
-            comments
-          </a>
-          <span class="p-2 text-gray-300 select-none">|</span>
-          <!-- Check if item has domain -->
-          <template x-if="item.hasOwnProperty('domain')">
-            <span x-text="item.domain" class="font-mono"></span>
-          </template>
+          <span x-text="`${item.comments_count} comments`"></span>
         </div>
-
-        <p class="text-xs text-gray-600">
-          <span x-text="item.points"></span>
-          <span> points by </span>
-          <a :href="getUserLink(item.user)">
-            <span x-text="item.user" class="text-underline"></span>
-          </a>
-          <span> | </span>
-          <span x-text="item.time_ago"></span>
-          <span> | </span>
-          <span x-text="item.comments_count"></span>
-          <span> comments</span>
-        </p>
       </div>
 
-      <h2>Comments</h2>
-
       <template x-for="comment in getComments(item)">
-        <div class="my-1" x-init="style = { marginLeft: `${comment.level * 1.5}rem`}">
+        <section class="my-1" x-init="style = { marginLeft: `${comment.level * 1.5}rem`}">
           <div class="comment" :style="style">
             <p class="text-bold comment-head">
               <a :href="getUserLink(comment.user)"><span x-text="comment.user" class="text-underline"></span></a>
@@ -99,7 +78,7 @@
             </p>
             <div x-html="comment.content"></div>
           </div>
-        </div>
+        </section>
       </template>
 
       <div class="text-center" x-cloak>
