@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HN Alpine.js - Baumannzone</title>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script src="main.js"></script>
 </head>
 
@@ -70,18 +70,16 @@
       </div>
 
       <template x-for="comment in getComments(item)">
-        <div class="my-1" x-init="style = { marginLeft: `${comment.level * 1.5}rem`}">
-          <div class="comment" :style="style">
-            <header>
-              <span>‣</span>
-              <a :href="buildUserLink(comment.user)"
-                class="font-medium text-gray-700 underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
-                x-text="comment.user"></a>
-              </a>
-              <span x-text="comment.time_ago" class="text-gray-500 text-xs"></span>
-            </header>
-            <div x-html="comment.content" class="text-gray-600 text-sm"></div>
-          </div>
+        <div :class="`mt-1 mb-2 ml-[${comment.level * 1.5}rem]`">
+          <header>
+            <span>‣</span>
+            <a :href="buildUserLink(comment.user)"
+              class="font-medium text-gray-700 underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
+              x-text="comment.user"></a>
+            </a>
+            <span x-text="comment.time_ago" class="text-gray-500 text-xs"></span>
+          </header>
+          <div x-html="comment.content" class="text-gray-600 text-sm prose"></div>
         </div>
       </template>
     </main>
