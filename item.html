@@ -64,10 +64,11 @@
           <span x-text="`${item.points} points`"></span>
           <span class="p-2 text-gray-300 select-none">|</span>
           <span x-text="item.time_ago"></span>
-          <span class="p-2 text-gray-300 select-none">|</span>
-          <span x-text="`${item.comments_count} comments`"></span>
         </div>
       </div>
+
+
+      <p x-text="`${item.comments_count} comments`" class="border-b mb-3 text-gray-600"></p>
 
       <template x-for="comment in getComments(item)">
         <div :class="`mt-1 mb-2 ml-[${comment.level * 1.5}rem]`">
