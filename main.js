@@ -47,7 +47,6 @@ const getItem = async (id) => {
   try {
     const res = await fetch(`${BASE_URL}/item/${id}.json`);
     const item = await res.json();
-    console.log('🚀 ~ file: main.js:50 ~ getItem ~ item:', item);
     return item;
   } catch (err) {
     console.log(err);
