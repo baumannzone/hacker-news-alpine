@@ -22,9 +22,9 @@ const SECTIONS = {
  * const stories = await getItems('top', 1)
  * console.log(stories) // [{...}, {...}, ...]
  */
-const getItems = async (section) => {
+const getItems = async (section, page = 1) => {
   try {
-    const res = await fetch(`${BASE_URL}${SECTIONS[section]}/1.json`);
+    const res = await fetch(`${BASE_URL}${SECTIONS[section]}/${page}.json`);
     const stories = await res.json();
 
     // Return the stories.
