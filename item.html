@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hacker News Alpine - Baumannzone</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script src="main.js"></script>
@@ -82,10 +83,12 @@
         <div :class="`mt-1 mb-2 ml-[${comment.level * 1.25}rem] border-l-2 pl-4`">
           <header>
             <span>‣</span>
-            <a :href="buildUserLink(comment.user)"
-              class="font-medium text-gray-700 underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
-              x-text="comment.user"></a>
-            </a>
+            <template x-if="comment.hasOwnProperty('user') && comment.user">
+              <a :href="buildUserLink(comment.user)"
+                class="font-medium text-gray-700 underline decoration-cyan-500/40 decoration-2 hover:decoration-cyan-500/80 ease-in duration-150"
+                x-text="comment.user"></a>
+              </a>
+            </template>
             <span x-text="comment.time_ago" class="text-gray-500 text-xs"></span>
           </header>
           <div x-html="comment.content" class="text-gray-600 text-sm prose"></div>
