@@ -20,18 +20,18 @@
 
 <body class="bg-gray-100">
   <!-- Container -->
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8" x-data="{ currentSection: '' }"
+    x-init="currentSection = getParamFromUrl(window.location.search, 'section') || null">
 
     <!-- Navigation -->
     <header>
       <div class="border-b border-gray-200">
         <nav class="-mb-px flex justify-center space-x-4" aria-label="Tabs">
-          <a href="/"
-            class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">Top</a>
-          <a href="/new.html"
-            class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">New</a>
-          <a href="/ask.html"
-            class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-3 font-medium text-sm">Ask</a>
+          <template x-for="section in Object.keys(SECTIONS)">
+            <a :href="`/?section=${section}&page=1`" x-text="section"
+              class="capitalize border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+            </a>
+          </template>
         </nav>
       </div>
     </header>
