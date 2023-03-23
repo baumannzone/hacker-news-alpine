@@ -1,0 +1,24 @@
+{
+  "name": "hacker-news-alpine",
+  "version": "1.0.0",
+  "description": "En este repositorio tienes todo lo necesario para aprender a crear un clon de la famosa página web **Hacker News** utilizando las tecnologías **Alpine.js** y **Tailwind CSS**.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
+    "build": "tailwindcss -i ./assets/input.css -o ./assets/output.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baumannzone/hacker-news-alpine.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baumannzone/hacker-news-alpine.js/issues"
+  },
+  "homepage": "https://github.com/baumannzone/hacker-news-alpine.js#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}
