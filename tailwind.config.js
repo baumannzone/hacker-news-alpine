@@ -2,5 +2,7 @@
 module.exports = {
   content: ["*.html"],
   theme: { extend: {}, },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

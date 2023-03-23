@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
-    "build": "tailwindcss -i ./assets/input.css -o ./assets/output.css --minify",
+    "min-css": "tailwindcss -i ./assets/input.css -o ./dist/assets/output.css --minify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/baumannzone/hacker-news-alpine.js#readme",
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "tailwindcss": "^3.2.7"
   }
 }
