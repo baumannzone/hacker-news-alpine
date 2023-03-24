@@ -44,9 +44,16 @@ Este clon de Hacker News tiene las siguientes características:
 
 Para usar este proyecto, sigue estos sencillos pasos:
 
+### Dev
 - Descarga o clona el repositorio desde Github.
+- Ejecuta el comando `npm install` para instalar las dependencias.
+- Ejectua el comando `npm run dev` para iniciar el modo de desarrollo para Tailwind CSS.
 - Abre el archivo `index.html` con **Live Server**.
 - Explora el sitio web y disfruta de las funcionalidades.
+
+### Build
+- Ejecuta el comando `npm run build` para generar el archivo `css` de Tailwind CSS en modo producción.
+- Haz commit y push de los cambios al repositorio.
 
 ## Contribuir al proyecto
 

@@ -10,6 +10,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
   <script src="./assets/main.js"></script>
   <link href="./assets/output.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 </head>
 
 <style>
@@ -80,7 +81,7 @@
       <p x-text="`${item.comments_count} comments`" class="border-b mb-3 text-gray-600"></p>
 
       <template x-for="comment in getComments(item)">
-        <div :class="`mt-1 mb-2 ml-[${comment.level * 1.25}rem] border-l-2 pl-4`">
+        <div class="mt-1 mb-2 border-l-2 pl-4" :class="`ml-[${comment.level * 1.25}rem]`">
           <header>
             <span>‣</span>
             <template x-if="comment.hasOwnProperty('user') && comment.user">
